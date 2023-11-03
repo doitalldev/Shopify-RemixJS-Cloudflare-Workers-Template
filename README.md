@@ -20,7 +20,9 @@ pnpm install
 ### 3. Create your environment variables
 Copy the `example.wrangler.toml` to your own `wrangler.toml` file and fill in the environment variables. (You should have a Shopify app created already on their partner dashboard so you can get the client id and secret.)
 
-For the app url, I set up a tunnel service using Cloudflare. You can use whatever you want, but I like this because it's free and it's easy to set up. You can find more info on that here: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps
+For the app url, I set up a free tunnel service using Cloudflare. You can follow how I set that up here: https://thingify.dev/creating-a-free-tunnel-service-for-developing-shopify-apps/
+
+As an alternative, you can use http://localhost:8002
 
 ### 4. Start the dev server
 ```bash
