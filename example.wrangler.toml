@@ -1,0 +1,7 @@
+name = "my-worker-dev"
+
+[vars]
+SHOPIFY_APP_KEY="CLIENT KEY"
+SHOPIFY_APP_SECRET="SECRET KEY"
+APP_URL="YOUR APPS URL"
+SHOPIFY_APP_SCOPES="read_products,write_products,read_script_tags,write_script_tags"
