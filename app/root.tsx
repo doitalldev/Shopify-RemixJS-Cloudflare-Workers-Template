@@ -12,11 +12,11 @@ import { useLoaderData } from "@remix-run/react";
 import { AppProvider } from '@shopify/shopify-app-remix/react';
 import {shopify} from '~/shopify.server';
 import { LiveReload } from '../app/components/LiveReload';
+import polarisStyles from "@shopify/polaris/build/esm/styles.css";
 
 
-export const links: LinksFunction = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-];
+
+export const links = () => [{ rel: "stylesheet", href: polarisStyles }];
 
 
 export async function loader({ request, context }: LoaderFunctionArgs) {
