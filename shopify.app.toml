@@ -1,0 +1,28 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "APP NAME"
+client_id = "APP CLIENT ID"
+application_url = "https://TUNNEL-URL"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,read_products,read_inventory,write_locations,read_locations,write_draft_orders,read_orders,customer_read_orders,write_draft_orders"
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [
+  "https://TUNNEL-URL/",
+  "https://TUNNEL-URL/auth",
+  "https://TUNNEL-URL/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = false
+dev_store_url = "https://DEV STORE URL"

@@ -6,6 +6,8 @@
   "scripts": {
     "build": "remix build",
     "dev": "remix dev --manual -c \"npm run start\"",
+    "remix-serve": "remix dev --manual -c \"npm run start\"",
+    "shopifydev": "shopify app dev --tunnel-url=https://{your-subdomain}.thingify.dev:80",
     "start": "wrangler pages dev --port=8002 --compatibility-date=2023-06-21 ./public",
     "typecheck": "tsc",
     "pages:deploy": "pnpm run build && wrangler pages deploy ./public"
@@ -15,12 +17,16 @@
     "@remix-run/cloudflare-pages": "^2.1.0",
     "@remix-run/css-bundle": "^2.1.0",
     "@remix-run/react": "^2.1.0",
+    "@shopify/app": "^3.50.2",
+    "@shopify/cli": "^3.50.2",
+    "@shopify/plugin-cloudflare": "^3.50.2",
     "@shopify/polaris": "^12.0.2",
     "@shopify/shopify-api": "^8.0.2",
     "@shopify/shopify-app-remix": "^2.1.0",
     "@shopify/shopify-app-session-storage-kv": "^2.0.1",
     "@shopify/shopify-app-session-storage-memory": "^2.0.1",
     "@shopify/shopify-app-session-storage-sqlite": "^2.0.1",
+    "@shopify/web-pixels-extension": "^0.4.14",
     "isbot": "^3.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
