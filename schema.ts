@@ -10,3 +10,4 @@ export const sessionTable = sqliteTable('session', {
   accessToken: text('accessToken'),
   userId: blob('userId', {mode: 'bigint'}),
 });
+
