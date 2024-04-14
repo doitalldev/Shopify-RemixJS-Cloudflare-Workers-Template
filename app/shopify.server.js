@@ -5,18 +5,28 @@ import {
   shopifyApp,
   LATEST_API_VERSION,
 } from '@shopify/shopify-app-remix';
-import { MemorySessionStorage } from '@shopify/shopify-app-session-storage-memory';
 
-const session = new MemorySessionStorage();
+import {DrizzleSessionStorageSQLite} from '@shopify/shopify-app-session-storage-drizzle';
+import { drizzle } from "drizzle-orm/d1";
 
-export const shopify = (env) =>  shopifyApp({
+import {sessionTable} from 'schema';
+
+export * as schema from "schema";
+
+export const shopify = (env) =>  {
+const d1Session = new DrizzleSessionStorageSQLite(drizzle(env.DB), sessionTable);
+
+return shopifyApp({
   apiKey: env.SHOPIFY_APP_KEY,
   apiSecretKey: env.SHOPIFY_APP_SECRET,
   appUrl: env.APP_URL,
   scopes: env.SHOPIFY_APP_SCOPES.split(","),
   apiVersion: LATEST_API_VERSION,
   isEmbeddedApp: true,
-  sessionStorage: session,
+  future: {
+    unstable_newEmbeddedAuthStrategy: true,
+  },
+  sessionStorage: d1Session,
   authPathPrefix: "/auth",
   webhooks: {
     APP_UNINSTALLED: {
@@ -25,3 +35,4 @@ export const shopify = (env) =>  shopifyApp({
     },
   },
 });
+}

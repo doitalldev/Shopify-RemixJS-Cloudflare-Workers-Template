@@ -5,3 +5,9 @@ SHOPIFY_APP_KEY="CLIENT KEY"
 SHOPIFY_APP_SECRET="SECRET KEY"
 APP_URL="YOUR APPS URL"
 SHOPIFY_APP_SCOPES="read_products,write_products,read_script_tags,write_script_tags"
+
+
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "your-database-name"
+database_id = "you-generated-database-id"
