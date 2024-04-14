@@ -23,6 +23,9 @@ export const shopify = (env) => {
     isEmbeddedApp: true,
     future: {
       unstable_newEmbeddedAuthStrategy: true,
+      v3_lineItemBilling: true,
+      v3_authenticatePublic: true,
+      v3_webhookAdminContext: true,
     },
     sessionStorage: d1Session,
     authPathPrefix: "/auth",
