@@ -10,3 +10,5 @@ node_modules
 
 wrangler.toml
 priv.shopify.app.toml
+shopify.app.ignore.toml
+.wrangler

@@ -29,3 +29,38 @@ As an alternative, you can use http://localhost:8002
 pnpm dev
 ```
 ### 5. Happy coding!
+
+## Creating the D1 Database
+
+Creating the D1 database is fairly straightforward, run the next command to create one.
+
+```bash
+wrangler d1 create d1-example
+```
+
+You will receive an output in the terminal that looks like this:
+```bash
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "your-database-name"
+database_id = "your-generated-database-id"
+```
+
+copy and paste it to your wrangler.toml file.
+
+
+Now that we have our DB created, let's generate and apply migrations:
+
+Generate migrations
+```bash
+pnpm db:generate
+```
+Apply migrations
+```bash
+pnpm dev:db:apply
+```
+
+You can also list pending migrations with 
+```bash
+pnpm dev:db:list
+```
