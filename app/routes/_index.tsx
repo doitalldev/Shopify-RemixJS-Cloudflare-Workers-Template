@@ -1,4 +1,19 @@
 import { Page, Card, EmptyState, Layout } from '@shopify/polaris';
+import { schema, shopify } from '~/shopify.server';
+import {initDB} from '~/db.server'
+import {json} from '@remix-run/cloudflare'
+
+export async function loader({ context, request }) {
+  console.log('hit index loader')
+
+  const test_data = await initDB(context)
+    .select()
+    .from(schema.sessionTable)
+    .all();
+    console.log('test_data', test_data)
+  
+  return json({message: 'hit index loader', status: 200},{status: 200})
+}
 
 
 export default function Index() {
