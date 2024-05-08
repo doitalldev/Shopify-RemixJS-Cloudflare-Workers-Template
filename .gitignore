@@ -12,3 +12,5 @@ wrangler.toml
 priv.shopify.app.toml
 shopify.app.ignore.toml
 .wrangler
+.vscode/database-client-config.json
+worker-configuration.d.ts

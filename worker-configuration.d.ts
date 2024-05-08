@@ -2,7 +2,7 @@
 // by running `wrangler types`
 
 interface Env {
-	APP_URL: "https://shopifyapp.thingify.dev";
+	APP_URL: "https://shopifyappdev1.innovonics.com";
 	SHOPIFY_APP_SCOPES: "read_products,write_products,read_script_tags,write_script_tags";
 	SHOPIFY_APP_KEY: string;
 	SHOPIFY_APP_SCOPE: string;

@@ -20,9 +20,15 @@ pnpm install
 ### 3. Create your environment variables
 Copy the `example.wrangler.toml` to your own `wrangler.toml` file and fill in the environment variables. (You should have a Shopify app created already on their partner dashboard so you can get the client id and secret.)
 
-For the app url, I set up a free tunnel service using Cloudflare. You can follow how I set that up here: https://thingify.dev/creating-a-free-tunnel-service-for-developing-shopify-apps/
+For the app url, I set up a free tunnel service using Cloudflare. You can follow how I set that up here: https://innovonics.com/creating-a-free-tunnel-service-for-developing-shopify-apps/
 
 As an alternative, you can use http://localhost:8002
+
+You will also need to copy the `.example.vars` to `.dev.vars` and fill out the required values.
+
+The reason we use the local `.{environment}.vars` file is because we want to keep the sensitive information out of the `wrangler.toml` file and out of git history.
+
+When adding the productions values, you would add them using the Cloudflare CLI with the encrypted flag set to `true`. This would keep the values secret but have no effect on the worker.
 
 ### 4. Start the dev server
 ```bash
@@ -64,3 +70,34 @@ You can also list pending migrations with
 ```bash
 pnpm dev:db:list
 ```
+
+### Viewing data in your current database
+
+You can view the data in your current database by running the following command:
+```bash
+pnpm db:studio:preview
+```
+This will open a Drizzle preview connection which you can view on your browser.
+
+Or if you are like me an use a 3rd party tool you can access the D1 SQLite database directly. It is located at the top of your project folder.
+```bash
+.wrangler/state/v3/d1/miniflare-D1DatabaseObject/[some-random-string].sqlite
+```
+
+## Webhooks
+The webhooks file is set up with the standard `app/uninstall` solution (delete the session in your database).
+
+~~It continues with the stadard switch/case solution. This is not necessarily how I would handle it when the application grows and will be subject to change.~~
+
+~~It would make more sense to me to use the routing to define webhook handling and set up a config file when registering webhooks.~~
+
+I ended up just implementing both for you to choose which you like.
+
+#### Route-based webhooks
+
+In `~/routes/webhooks/carts/create.tsx` You can see how I would handle the route-based approach. The webhook logic is defined by the route and used as the endpoint shown in `~/routes/webhooks/config.tsx` which is used as a global webhook endpoint definition file.
+
+#### Standard Switch/Case webhooks
+
+You can view this method in `~/routes/webhooks/route.tsx`. This is the standard switch/case solution. It uses the `topic` to determine the logic to handle the webhook. It works for small solutions but personally the route-based approach is a long term optimiation that makes more sense.
+
