@@ -24,6 +24,12 @@ For the app url, I set up a free tunnel service using Cloudflare. You can follow
 
 As an alternative, you can use http://localhost:8002
 
+You will also need to copy the `.example.vars` to `.dev.vars` and fill out the required values.
+
+The reason we use the local `.{environment}.vars` file is because we want to keep the sensitive information out of the `wrangler.toml` file.
+
+When adding the productions values, you would add them using the Cloudflare CLI with the encrypted flag `true`. This would keep the values secret but have no effect on the worker.
+
 ### 4. Start the dev server
 ```bash
 pnpm dev
