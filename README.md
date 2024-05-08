@@ -26,9 +26,9 @@ As an alternative, you can use http://localhost:8002
 
 You will also need to copy the `.example.vars` to `.dev.vars` and fill out the required values.
 
-The reason we use the local `.{environment}.vars` file is because we want to keep the sensitive information out of the `wrangler.toml` file.
+The reason we use the local `.{environment}.vars` file is because we want to keep the sensitive information out of the `wrangler.toml` file and out of git history.
 
-When adding the productions values, you would add them using the Cloudflare CLI with the encrypted flag `true`. This would keep the values secret but have no effect on the worker.
+When adding the productions values, you would add them using the Cloudflare CLI with the encrypted flag set to `true`. This would keep the values secret but have no effect on the worker.
 
 ### 4. Start the dev server
 ```bash
@@ -85,3 +85,19 @@ Or if you are like me an use a 3rd party tool you can access the D1 SQLite datab
 ```
 
 ## Webhooks
+The webhooks file is set up with the standard `app/uninstall` solution (delete the session in your database).
+
+~~It continues with the stadard switch/case solution. This is not necessarily how I would handle it when the application grows and will be subject to change.~~
+
+~~It would make more sense to me to use the routing to define webhook handling and set up a config file when registering webhooks.~~
+
+I ended up just implementing both for you to choose which you like.
+
+#### Route-based webhooks
+
+In `~/routes/webhooks/carts/create.tsx` You can see how I would handle the route-based approach. The webhook logic is defined by the route and used as the endpoint shown in `~/routes/webhooks/config.tsx` which is used as a global webhook endpoint definition file.
+
+#### Standard Switch/Case webhooks
+
+You can view this method in `~/routes/webhooks/route.tsx`. This is the standard switch/case solution. It uses the `topic` to determine the logic to handle the webhook. It works for small solutions but personally the route-based approach is a long term optimiation that makes more sense.
+
