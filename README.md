@@ -20,7 +20,7 @@ pnpm install
 ### 3. Create your environment variables
 Copy the `example.wrangler.toml` to your own `wrangler.toml` file and fill in the environment variables. (You should have a Shopify app created already on their partner dashboard so you can get the client id and secret.)
 
-For the app url, I set up a free tunnel service using Cloudflare. You can follow how I set that up here: https://thingify.dev/creating-a-free-tunnel-service-for-developing-shopify-apps/
+For the app url, I set up a free tunnel service using Cloudflare. You can follow how I set that up here: https://innovonics.com/creating-a-free-tunnel-service-for-developing-shopify-apps/
 
 As an alternative, you can use http://localhost:8002
 
@@ -64,3 +64,18 @@ You can also list pending migrations with
 ```bash
 pnpm dev:db:list
 ```
+
+### Viewing data in your current database
+
+You can view the data in your current database by running the following command:
+```bash
+pnpm db:studio:preview
+```
+This will open a Drizzle preview connection which you can view on your browser.
+
+Or if you are like me an use a 3rd party tool you can access the D1 SQLite database directly. It is located at the top of your project folder.
+```bash
+.wrangler/state/v3/d1/miniflare-D1DatabaseObject/[some-random-string].sqlite
+```
+
+## Webhooks
